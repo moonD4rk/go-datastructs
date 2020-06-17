@@ -89,15 +89,13 @@ func main() {
 	l.Append(1)
 	l.Append(2)
 	l.Append(3)
-	l.Append(4)
-	l.Append(5)
-	l.Append(6)
-	l.Append(7)
-	l.Append(8)
-	l.Append(9)
-	l.Insert(100, 4)
 	l.Range()
-	l.Append(5)
+	m := l
+	l.Insert(100,5)
+	l.Append(4)
+	l.Len()
+	l.Range()
+	m.Range()
 }
 
 /*

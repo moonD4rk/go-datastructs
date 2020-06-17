@@ -7,5 +7,5 @@
 
 ### singly 
 
-[singly linked list](https://github.com/moonD4rk/go-datastructs/tree/master/list/singly)
+[singly linked list](https://github.com/moonD4rk/go-datastructs/blob/master/list/singly/list.go)
 
