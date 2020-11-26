@@ -1,4 +1,4 @@
-package main
+package singly_linked_list
 
 import (
 	"fmt"
@@ -10,6 +10,15 @@ type List struct {
 	NodeNum  interface{}
 	NodeTime time.Time
 	Next     *List
+}
+
+// NewListNode create new list node
+func NewListNode() *List {
+	return &List{
+		NodeNum:  "node0",
+		NodeTime: time.Now(),
+		Next:     nil,
+	}
 }
 
 // Append use for append one list node at tail
@@ -73,29 +82,6 @@ func (l *List) Len() int {
 		count++
 	}
 	return count + 1
-}
-
-// NewListNode create new list node
-func NewListNode() *List {
-	return &List{
-		NodeNum:  "node0",
-		NodeTime: time.Now(),
-		Next:     nil,
-	}
-}
-
-func main() {
-	l := NewListNode()
-	l.Append(1)
-	l.Append(2)
-	l.Append(3)
-	l.Range()
-	m := l
-	l.Insert(100,5)
-	l.Append(4)
-	l.Len()
-	l.Range()
-	m.Range()
 }
 
 /*
