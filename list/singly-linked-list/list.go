@@ -32,6 +32,7 @@ func (l *List) Append(nodeNum int) {
 		l.Next = newNode
 		return
 	}
+	// traversal linked list, find nil node
 	for l.Next != nil {
 		l = l.Next
 	}
@@ -50,7 +51,7 @@ func (l *List) Range() {
 
 // Insert use for insert node in specific num
 func (l *List) Insert(nodeNum, insertNum int) {
-	if insertNum > l.Len() {
+	if insertNum > l.Length() {
 		fmt.Println("insert > list length")
 		return
 	}
@@ -68,12 +69,14 @@ func (l *List) Insert(nodeNum, insertNum int) {
 	l.Next = newNode
 }
 
-// Len get node list's length
-func (l *List) Len() int {
+// Len get length of list
+func (l *List) Length() int {
 	var count int
+	// if list is nil, return 0
 	if l == nil {
 		return count
 	}
+	// if list have one value, return 1
 	if l.Next == nil {
 		return count + 1
 	}
