@@ -47,22 +47,21 @@ func (l *List) Append(nodeNum int) {
 		NodeTime: time.Now(),
 		Next:     nil,
 	}
-	if l.Next == nil {
-		l.Next = newNode
-		return
+	for iter := l; iter != nil; iter = iter.Next {
+		if iter.Next == nil {
+			iter.Next = newNode
+			break
+		}
 	}
-	// traversal linked list, find nil node
-	for l.Next != nil {
-		l = l.Next
-	}
-	l.Next = newNode
 }
 
 // Range use for traversal all list node
 func (l *List) Range() {
-	for l != nil {
-		fmt.Printf("%v -> ", l.NodeNum)
-		l = l.Next
+	if l == nil {
+		return
+	}
+	for iter := l; iter != nil; iter = iter.Next {
+		fmt.Printf("%v -> ", iter.NodeNum)
 	}
 	fmt.Println()
 	fmt.Printf("-----range is done\n")
@@ -80,12 +79,47 @@ func (l *List) Insert(nodeNum, insertNum int) {
 		Next:     nil,
 	}
 	count := 1
-	for l.Next != nil && count < insertNum {
-		l = l.Next
+	for iter := l; iter != nil; iter = iter.Next {
+		if count == insertNum {
+			newNode.Next = iter.Next
+			iter.Next = newNode
+			break
+		}
 		count++
 	}
-	newNode.Next = l.Next
-	l.Next = newNode
+}
+
+func (l *List) RemoveNode(nodeNum int) {
+	if l == nil {
+		return
+	}
+	count := 0
+	for iter := l; iter != nil; iter = iter.Next {
+		if count == nodeNum {
+			iter.Next = iter.Next.Next
+			break
+		}
+		count++
+	}
+}
+
+func (l *List) GetNode(nodeNum int) *List {
+	if l == nil {
+		return nil
+	}
+	count := 0
+	for iter := l; iter != nil; iter = iter.Next {
+		if count == nodeNum {
+			h := &List{
+				NodeNum:  iter.NodeNum,
+				NodeTime: iter.NodeTime,
+				Next:     nil,
+			}
+			return h
+		}
+		count++
+	}
+	return nil
 }
 
 // Len get length of list
@@ -96,15 +130,12 @@ func (l *List) Length() int {
 		return count
 	}
 	// if list have one value, return 1
-	if l.Next == nil {
-		return count + 1
-	}
-	for l.Next != nil {
-		l = l.Next
+	for iter := l; iter != nil; iter = iter.Next {
 		count++
 	}
-	return count + 1
+	return count
 }
+
 ```
 
 

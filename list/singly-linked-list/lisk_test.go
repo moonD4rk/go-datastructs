@@ -11,12 +11,18 @@ func TestNewListNode(t *testing.T) {
 	l.Append(2)
 	l.Append(3)
 	l.Range()
-	m := l
-	l.Insert(100, 5)
+}
+
+func TestList_Insert(t *testing.T) {
+	l := NewListNode()
+	l.Append(1)
+	l.Append(2)
+	l.Append(3)
 	l.Append(4)
-	l.Length()
+	l.Append(5)
 	l.Range()
-	m.Range()
+	l.Insert(100, 3)
+	l.Range()
 }
 
 func TestList_Append(t *testing.T) {
@@ -34,7 +40,32 @@ func TestList_Length(t *testing.T) {
 	l.Append(2)
 	l.Append(3)
 	l.Append(4)
-	len := l.Length()
+	fmt.Println(l.Length())
+	if l.Length() != 5 {
+		t.Errorf("length error")
+	}
+
+}
+
+func TestList_RemoveNode(t *testing.T) {
+	l := NewListNode()
+	l.Append(1)
+	l.Append(2)
+	l.Append(3)
+	l.Append(4)
+	l.Append(5)
 	l.Range()
-	fmt.Println(len)
+	l.RemoveNode(3)
+	l.Range()
+}
+
+func TestList_GetNode(t *testing.T) {
+	l := NewListNode()
+	l.Append(1)
+	l.Append(2)
+	l.Append(3)
+	l.Append(4)
+	l.Append(5)
+	r := l.GetNode(3)
+	fmt.Println(r)
 }
