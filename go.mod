@@ -1,3 +1,3 @@
-module github.com/moonD4rk/go-datastructs
+module github.com/moond4rk/go-datastructs
 
-go 1.14
+go 1.19

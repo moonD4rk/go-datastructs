@@ -1,83 +1,80 @@
-package singly_linked_list
+package singlylist
 
 import (
-	"fmt"
-	"strconv"
 	"time"
 )
 
 type List struct {
-	NodeNum  interface{}
-	NodeTime time.Time
-	Next     *List
+	value      int
+	createTime time.Time
+	next       *List
 }
 
-// NewListNode create new list node
-func NewListNode() *List {
+// New create new list node
+func New() *List {
 	return &List{
-		NodeNum:  "node0",
-		NodeTime: time.Now(),
-		Next:     nil,
+		value:      0,
+		createTime: time.Now(),
+		next:       nil,
 	}
 }
 
 // Append use for append one list node at tail
-func (l *List) Append(nodeNum int) {
+func (l *List) Append(value int) {
 	newNode := &List{
-		NodeNum:  "node" + strconv.Itoa(nodeNum),
-		NodeTime: time.Now(),
-		Next:     nil,
+		value:      value,
+		createTime: time.Now(),
+		next:       nil,
 	}
-	for iter := l; iter != nil; iter = iter.Next {
-		if iter.Next == nil {
-			iter.Next = newNode
+	for iter := l; iter != nil; iter = iter.next {
+		if iter.next == nil {
+			iter.next = newNode
 			break
 		}
 	}
 }
 
 // Range use for traversal all list node
-func (l *List) Range() {
+func (l *List) Range(rangFunc func(value int) string) string {
+	var s string
 	if l == nil {
-		return
+		return s
 	}
-	for iter := l; iter != nil; iter = iter.Next {
-		fmt.Printf("%v -> ", iter.NodeNum)
+	for iter := l; iter != nil; iter = iter.next {
+		s += rangFunc(iter.value)
 	}
-	fmt.Println()
-	fmt.Printf("-----range is done\n")
+	return s
 }
 
 // Insert use for insert node in specific num
 func (l *List) Insert(nodeNum, insertNum int) {
 	if insertNum > l.Length() {
-		fmt.Println("insert > list length")
 		return
 	}
 	newNode := &List{
-		NodeNum:  "node" + strconv.Itoa(nodeNum),
-		NodeTime: time.Now(),
-		Next:     nil,
+		value:      nodeNum,
+		createTime: time.Now(),
+		next:       nil,
 	}
 	count := 1
-	for iter := l; iter != nil; iter = iter.Next {
+	for iter := l; iter != nil; iter = iter.next {
 		if count == insertNum {
-			newNode.Next = iter.Next
-			iter.Next = newNode
+			newNode.next = iter.next
+			iter.next = newNode
 			break
 		}
 		count++
 	}
 }
 
-func (l *List) RemoveNode(nodeNum int) {
+func (l *List) RemoveValue(value int) {
 	if l == nil {
 		return
 	}
 	count := 0
-	for iter := l; iter != nil; iter = iter.Next {
-		if count == nodeNum {
-			iter.Next = iter.Next.Next
+	for iter := l; iter != nil; iter = iter.next {
+		if count == value {
+			iter.next = iter.next.next
 			break
 		}
 		count++
@@ -89,12 +86,12 @@ func (l *List) GetNode(nodeNum int) *List {
 		return nil
 	}
 	count := 0
-	for iter := l; iter != nil; iter = iter.Next {
+	for iter := l; iter != nil; iter = iter.next {
 		if count == nodeNum {
 			h := &List{
-				NodeNum:  iter.NodeNum,
-				NodeTime: iter.NodeTime,
-				Next:     nil,
+				value:      iter.value,
+				createTime: iter.createTime,
+				next:       nil,
 			}
 			return h
 		}
@@ -103,7 +100,7 @@ func (l *List) GetNode(nodeNum int) *List {
 	return nil
 }
 
-// Len get length of list
+// Length Len get length of list
 func (l *List) Length() int {
 	var count int
 	// if list is nil, return 0
@@ -111,7 +108,7 @@ func (l *List) Length() int {
 		return count
 	}
 	// if list have one value, return 1
-	for iter := l; iter != nil; iter = iter.Next {
+	for iter := l; iter != nil; iter = iter.next {
 		count++
 	}
 	return count
