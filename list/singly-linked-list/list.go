@@ -2,20 +2,19 @@ package singly_linked_list
 
 import (
 	"fmt"
-	"strconv"
 	"time"
 )
 
 type List struct {
-	NodeNum  interface{}
+	NodeNum  int
 	NodeTime time.Time
 	Next     *List
 }
 
-// NewListNode create new list node
-func NewListNode() *List {
+// New create new list node
+func New() *List {
 	return &List{
-		NodeNum:  "node0",
+		NodeNum:  0,
 		NodeTime: time.Now(),
 		Next:     nil,
 	}
@@ -24,7 +23,7 @@ func NewListNode() *List {
 // Append use for append one list node at tail
 func (l *List) Append(nodeNum int) {
 	newNode := &List{
-		NodeNum:  "node" + strconv.Itoa(nodeNum),
+		NodeNum:  nodeNum,
 		NodeTime: time.Now(),
 		Next:     nil,
 	}
@@ -37,12 +36,12 @@ func (l *List) Append(nodeNum int) {
 }
 
 // Range use for traversal all list node
-func (l *List) Range() {
+func (l *List) Range(rangFunc func(list *List)) {
 	if l == nil {
 		return
 	}
 	for iter := l; iter != nil; iter = iter.Next {
-		fmt.Printf("%v -> ", iter.NodeNum)
+		rangFunc(iter)
 	}
 	fmt.Println()
 	fmt.Printf("-----range is done\n")
@@ -55,7 +54,7 @@ func (l *List) Insert(nodeNum, insertNum int) {
 		return
 	}
 	newNode := &List{
-		NodeNum:  "node" + strconv.Itoa(nodeNum),
+		NodeNum:  nodeNum,
 		NodeTime: time.Now(),
 		Next:     nil,
 	}
@@ -103,7 +102,7 @@ func (l *List) GetNode(nodeNum int) *List {
 	return nil
 }
 
-// Len get length of list
+// Length Len get length of list
 func (l *List) Length() int {
 	var count int
 	// if list is nil, return 0
