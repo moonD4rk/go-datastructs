@@ -1,5 +1,5 @@
 # go-datastructs
-[![Lint](https://github.com/moonD4rk/go-datastructs/actions/workflows/lint.yml/badge.svg)](https://github.com/moonD4rk/go-datastructs/actions/workflows/lint.yml) [![run tests](https://github.com/moonD4rk/go-datastructs/actions/workflows/test.yml/badge.svg)](https://github.com/moonD4rk/go-datastructs/actions/workflows/test.yml) 
+[![Lint](https://github.com/moonD4rk/go-datastructs/actions/workflows/lint.yml/badge.svg)](https://github.com/moonD4rk/go-datastructs/actions/workflows/lint.yml) [![run tests](https://github.com/moonD4rk/go-datastructs/actions/workflows/test.yml/badge.svg)](https://github.com/moonD4rk/go-datastructs/actions/workflows/test.yml) [![Coverage Status](https://coveralls.io/repos/github/moonD4rk/go-datastructs/badge.svg?branch=master)](https://coveralls.io/github/moonD4rk/go-datastructs?branch=master)
 
  Implement common data structure in golang.
 
